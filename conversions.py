@@ -1,12 +1,17 @@
+"""
+conversions.py
+Description: definitions that convert key and non-key texts to their respective matrices and vice versa
+"""
+
 import numpy as n
 import immutable_data as id
 
 def matrix_to_text(keymatrix, matrix):
     text = ""
-    # multiply plainmatrix by keymatrix modulo 26
+    # multiply matrix by keymatrix modulo 26
     matrix = n.remainder(n.matmul(keymatrix, matrix), 26)
     (i, j) = n.shape(matrix)
-    # create the ciphertext from the ciphermatrix
+    # create the text from the matrix
     for j0 in range(j):
         for i0 in range(i):
             text = text+(id.num_to_alph[matrix[i0][j0]])
@@ -32,10 +37,10 @@ def text_to_matrix(text, dimension):
     # convert from letters to numbers
     for i in text:
         num.append(id.alph_to_num[i])
-    # plainmatrix's values
+    # matrix's values
     if len(text)%dimension != 0:
         for i in range(len(text)%dimension):
             num.append(25)
-    # the plainmatrix
+    # the matrix
     matrix = n.transpose(n.asarray(num).reshape(int(len(text)/2+len(text)%2),2))
     return matrix

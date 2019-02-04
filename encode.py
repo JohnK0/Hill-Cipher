@@ -1,3 +1,8 @@
+"""
+encode.py
+Description: encrypts a plaintext
+"""
+
 import numpy as n
 import conversions as conv
 
@@ -9,14 +14,16 @@ def encode_(keyword, plaintext):
     # print("plainmatrix:\n", plainmatrix, "\nKeymatrix:\n", keymatrix)
     ciphertext = conv.matrix_to_text(keymatrix, plainmatrix)
     # print(ciphertext)
-    return (keymatrix, ciphertext)
+    return ciphertext
 
 def main():
     # user input for plaintext
-    plaintext = input("Enter a text you want to encode: ")
-    #keyword
-    keyword = 'hill'
+    plaintext = input("What do you want to encode? ")
+    keyword = input("What is the key? ")
+    # basic keyword below
+    # keyword = 'hill'
     #encrypt plaintext
-    encode_('hill', plaintext)
+    print("The encrypted text: ", encode_('hill', plaintext))
+
 if __name__ == "__main__":
     main()
